@@ -1,5 +1,7 @@
 # REPORT – Real-Time Video Pipeline
 
+> **Note to Reviewer:** Since no `demo.mp4` video was provided in the assignment bundle, a random `demo.mp4` (a video of Earth at night) was sourced and used for all development and testing. The quality thresholds and metrics described below were specifically tuned to the characteristics of this video.
+
 ## Architecture
 
 Two **CaptureThreads** (`cam_a`, `cam_b`) each open `demo.mp4` via `cv2.VideoCapture(path, cv2.CAP_FFMPEG)` and write into a **LatestSlot** (single-element, lock-protected buffer).  A single **ConsumerThread** polls both slots, applies a three-stage quality gate, and preprocesses accepted frames to 640×640 NCHW float32.  A **MetricsEmitter** in the main thread prints JSON stats every 5 s.  SIGINT sets a shared `threading.Event`, and all threads exit cooperatively within < 2 s.

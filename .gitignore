@@ -13,5 +13,4 @@ env.bak/
 venv.bak/
 
 # Project specifics
-demo.mp4
 .pytest_cache/
