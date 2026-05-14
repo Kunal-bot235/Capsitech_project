@@ -1,0 +1,1 @@
+pip install -r requirements.txt && python run.py --input demo.mp4
